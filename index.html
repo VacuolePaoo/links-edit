@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>友链 TS 编辑器</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/typescript@5.8.3/lib/typescript.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel source-panel">
+        <div class="panel-header">
+          <h1>友链 TS 编辑器</h1>
+          <p>导入或粘贴已有 TypeScript 文件，解析后可视化编辑并重新导出。</p>
+        </div>
+
+        <div class="toolbar">
+          <label class="btn">
+            导入文件
+            <input id="fileInput" type="file" accept=".ts,.tsx,.js,.txt" hidden />
+          </label>
+          <button class="btn" id="parseBtn">解析内容</button>
+          <button class="btn" id="sampleBtn">清空输入</button>
+        </div>
+
+        <textarea
+          id="sourceInput"
+          placeholder="在这里粘贴包含 export default [...] satisfies FeedGroup[] 的 TS 内容"
+        ></textarea>
+
+        <div class="status" id="status">等待输入。</div>
+      </section>
+
+      <section class="panel editor-panel">
+        <div class="panel-header">
+          <h2>结构编辑</h2>
+          <p>左侧管理分组，右侧编辑字段；支持新增/删除 group 与 entry。</p>
+        </div>
+
+        <div class="editor-layout">
+          <aside class="sidebar">
+            <div class="sidebar-title-row">
+              <strong>Groups</strong>
+              <button class="tiny-btn" id="addGroupBtn">+ Group</button>
+            </div>
+            <ul id="groupList"></ul>
+          </aside>
+
+          <section class="content" id="editorContent">
+            <div class="empty">请先解析 TS 内容。</div>
+          </section>
+        </div>
+
+        <div class="toolbar">
+          <button class="btn" id="exportBtn">导出 TS</button>
+          <button class="btn" id="copyBtn">复制结果</button>
+          <button class="btn" id="downloadBtn">下载文件</button>
+        </div>
+
+        <textarea id="output" placeholder="导出结果会显示在这里"></textarea>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
